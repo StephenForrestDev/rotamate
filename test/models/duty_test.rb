@@ -2,10 +2,15 @@ require 'test_helper'
 
 class DutyTest < ActiveSupport::TestCase
   def setup
-    @duty = Duty.new(dutynum: "1111", starttime: '07:00', endtime:'18:30', paytime: '8:00', notes: "Long duty")
+    @driver = Driver.create!(name: "Stephen", email: "Stephen@example.com")
+    @duty = @driver.duties.build(dutynum: "1111", starttime: '07:00', endtime:'18:30', paytime: '8:00', notes: "Long duty")
   end
   test "Duty should be valid" do
     assert @duty.valid?
+  end
+  test "Duty without driver should be invalid" do
+    @duty.driver_id = nil
+    assert_not @duty.valid?
   end
   test "Duty Num should be present" do
     @duty.dutynum = ""
