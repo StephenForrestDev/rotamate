@@ -1,0 +1,29 @@
+<h1 align="center">Duty Number: <%= @duty.dutynum %></h1>
+<div class="well col-md-8 col-md-offset-2">
+  <h4>StartTime:</h4><%= @duty.starttime %>
+  <hr />
+  <h4>EndTime:</h4><%= @duty.endtime %>
+  <hr />
+  <h4>PayTime:</h4><%= @duty.paytime %>
+  <hr />
+  <h4><strong>Notes:</strong></h4>
+  <hr />
+  <%= @duty.notes %>
+  <hr />
+  <div class="pull-right">
+    <p class="center">
+      Driver:
+    </p>
+    <p class="center">
+      <%= link_to gravatar_for(@duty.driver), duties_path %>
+      <%= @duty.driver.name %>
+      <div class="pull-right">
+        <%= time_ago_in_words(@duty.created_at) %> ago
+      </div>
+    </p>
+  </div>
+  <div class="duty-actions">
+    <%= link_to "Edit this duty", edit_duty_path(@duty), class: "btn btn-xs btn-warning" %>
+    <%= link_to "Delete this duty", duty_path(@duty), method: :delete, data: {confirm: "Are you sure??"}, class: "btn btn-xs btn-danger" %>
+  </div>
+</div>

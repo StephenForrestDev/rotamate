@@ -1,0 +1,27 @@
+<%= render 'layouts/page_title', title: "Displaying All Duties" %>
+
+<div class="well col-md-8 col-md-offset-2">
+<table class="table table-bordered">
+  <tr>
+    <th>DutyNum</th>
+    <th>Driver Name</th>
+    <th>Start Time</th>
+    <th>End Time</th>
+    <th>Pay Time</th>
+    <th>Notes</th>
+  </tr>
+  <% @duties.each do |duty| %>
+    <tr>
+      <td><%= duty.dutynum %></td>
+      <td><%= link_to gravatar_for(duty.driver), duties_path %></td>
+      <td><%= duty.starttime %></td>
+      <td><%= duty.endtime %></td>
+      <td><%= duty.paytime %></td>
+      <td><%= duty.notes %></td>
+      <td><%= link_to "Edit", edit_duty_path(duty) %></td>
+      <td><%= link_to "Show", duty_path(duty) %></td>
+      <td><%= link_to "Delete", duty_path(duty), method: :delete, data: {confirm: "Are you sure??"} %></td>
+    </tr>
+  <% end %> 
+</table>
+</div>

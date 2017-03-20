@@ -1,0 +1,75 @@
+<%= render 'layouts/page_title', title: "Create a new Duty" %>
+<% if @duty.errors.any? %>
+<div class="row">
+  <div class= "col md-8 col-md-offset-2">
+    <div class= "panel panel-danger">
+      <div class="panel-heading">
+        <h2 class="panel-title">
+          The following errors prevented the duty from being saved.
+        </h2>
+        <div class= "panel-body">
+          <ul>
+            <% @duty.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>
+<div class="row">
+  <div class="col-md-6">
+    <%= form_for @duty, :html => {class: "form-horizontal",role: "form"} do |f| %>
+      <div class= "form-group">
+        <div class= "control-label col-md-2">
+          <%= f.label :dutynum %>
+        </div>
+        <div class= "col-md-8">
+          <%= f.text_field :dutynum, class:"form-control", placeholder:"0000", autofocus: true %>
+        </div>
+      </div>
+      <div class= "form-group">
+        <div class= "control-label col-md-2">
+          <%= f.label :starttime %>
+        </div>
+        <div class= "col-md-8">
+           <%= f.time_field :starttime, class:"form-control",  value: @duty.starttime %>
+        </div>
+      </div>
+      <div class= "form-group">
+        <div class= "control-label col-md-2">
+          <%= f.label :endtime %>
+        </div>
+        <div class= "col-md-8">
+           <%= f.time_field :endtime, class:"form-control", value: @duty.endtime %>
+        </div>
+      </div>
+      <div class= "form-group">
+        <div class= "control-label col-md-2">
+          <%= f.label :paytime %>
+        </div>
+        <div class= "col-md-8">
+           <%= f.time_field :paytime, class:"form-control",  value: @duty.paytime %>
+        </div>
+      </div>
+      <div class= "form-group">
+        <div class= "control-label col-md-2">
+          <%= f.label :notes %>
+        </div>
+        <div class= "col-md-8">
+          <%= f.text_area :notes, class:"form-control", placeholder:"Notes..." %>
+        </div>
+      </div>
+      <div class="col-md-offset-2 col-md-6">
+        <%= f.submit class: "btn btn-primary btn-lg btn-xlarge" %>
+      </div>
+    <% end %>
+    <div class="col-md-4 col-md-offset-4">
+      <%= link_to "Back to duty listing", duties_path %>
+    </div>
+  </div>
+</div>
+
