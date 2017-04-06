@@ -1,0 +1,26 @@
+<%= render 'layouts/page_title', title: "Driver: #{@driver.name}" %>
+<div class="row">
+  <div class = "col-md-4 col-md-offset-4 center">
+    <%= gravatar_for @driver, size:150 %>
+  </div>
+</div>
+<% if logged_in? && current_driver.admin? %>
+<div class="row">
+  <div class = "col-md-4 col-md-offset-4 center">
+    <ul class = "list-inline">
+      <li><%= link_to "Edit Driver", edit_driver_path(@driver), class: "btn btn-xs btn-warning"%></li>
+      <% if !@driver.admin %>
+            <li><%= link_to "Delete Driver", driver_path(@driver), method: :delete, data: {confirm: "Are you sure you want to delete driver and all associated duties??"}, class: "btn btn-xs btn-danger"%></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
+<h4 align="center">Duties of <%= @driver.name %> :</h4>
+<div align="center">
+  <%= will_paginate @driver_duties %>
+</div>
+<%= render 'duties/duty', obj: @driver_duties  %>
+<div align="center">
+  <%= will_paginate @driver_duties %>
+</div>

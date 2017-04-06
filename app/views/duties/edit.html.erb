@@ -1,4 +1,4 @@
-<%= render 'layouts/page_title', title: "Create a new Duty" %>
+<%= render 'layouts/page_title', title: "Edit an existing Duty" %>
 <% if @duty.errors.any? %>
 <div class="row">
   <div class= "col md-8 col-md-offset-2">
@@ -25,15 +25,23 @@
     <%= form_for @duty, :html => {class: "form-horizontal",role: "form"} do |f| %>
       <div class= "form-group">
         <div class= "control-label col-md-2">
-          <%= f.label :dutynum %>
+          <%= f.label :dutynum, "Duty Number" %>
         </div>
         <div class= "col-md-8">
-          <%= f.text_field :dutynum, class:"form-control", placeholder:"0000", autofocus: true %>
+          <%= f.text_field :dutynum, class:"form-control", value: @duty.dutynum, autofocus: true %>
         </div>
       </div>
       <div class= "form-group">
         <div class= "control-label col-md-2">
-          <%= f.label :starttime %>
+          <%= f.label :start_date, "Start Date" %>
+        </div>
+        <div class= "col-md-8">
+           <%= f.date_field :start_date, class:"form-control", value: @duty.start_date %>
+        </div>
+      </div>
+      <div class= "form-group">
+        <div class= "control-label col-md-2">
+          <%= f.label :starttime, "Start Time" %>
         </div>
         <div class= "col-md-8">
            <%= f.time_field :starttime, class:"form-control",  value: @duty.starttime %>
@@ -41,7 +49,7 @@
       </div>
       <div class= "form-group">
         <div class= "control-label col-md-2">
-          <%= f.label :endtime %>
+          <%= f.label :endtime,  "End Time" %>
         </div>
         <div class= "col-md-8">
            <%= f.time_field :endtime, class:"form-control", value: @duty.endtime %>
@@ -49,7 +57,7 @@
       </div>
       <div class= "form-group">
         <div class= "control-label col-md-2">
-          <%= f.label :paytime %>
+          <%= f.label :paytime, "Pay Time" %>
         </div>
         <div class= "col-md-8">
            <%= f.time_field :paytime, class:"form-control",  value: @duty.paytime %>
@@ -57,7 +65,7 @@
       </div>
       <div class= "form-group">
         <div class= "control-label col-md-2">
-          <%= f.label :notes %>
+          <%= f.label :notes, "Notes" %>
         </div>
         <div class= "col-md-8">
           <%= f.text_area :notes, class:"form-control", placeholder:"Notes..." %>
@@ -67,8 +75,9 @@
         <%= f.submit class: "btn btn-primary btn-lg btn-xlarge" %>
       </div>
     <% end %>
-    <div class="col-md-4 col-md-offset-4">
-      <%= link_to "Back to duty listing", duties_path %>
+      <div class="duty-actions">
+      <%= link_to "Delete this duty", duty_path(@duty), method: :delete, data: {confirm: "Are you sure??"}, class: "btn btn-xs btn-danger" %>
+      <%= link_to "Return to dashboard", dashboard_path(@duty.driver.id), class: "btn btn-xs btn-primary" %>
     </div>
   </div>
 </div>

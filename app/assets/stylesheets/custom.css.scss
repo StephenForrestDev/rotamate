@@ -1,9 +1,12 @@
-$navbar-default-bg: #383838;
+$navbar-default-bg: #3a3a3a;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
 .center{
   text-align: center;
+}
+.navbar-default li:hover{
+  color: #fff;
 }
 
 .jumbotron{
@@ -57,4 +60,64 @@ footer ul {
 footer ul li {
   float: left;
   margin-left: 15px;
+}
+
+.listing {
+  list-style: none;
+  padding-left: 0;
+}
+
+.driver-title {
+  color: #383838;
+  font-weight: bold;
+  font-size: 1.25em;
+}
+.simple-calendar {
+  .day {
+    width: 50px;
+    height: 100px;
+    background-color: #ddd;
+    border: 1px solid #aaa;
+  }
+
+  .wday-0 {}
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {}
+
+  .today {
+    background-color: #ccc !important;
+  }
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {
+    background-color: #555;}
+  .next-month {
+    background-color: #555;}
+  .current-month {
+    background-color: #eee;
+  }
+
+  .has-events {}
+}
+
+.dutybtn{
+  white-space: normal !important;
+  word-wrap: break-word;
+  width: 105px;
+  background-color: #aaa;
+  color: #222;
+}
+.dutybtn:hover{
+  white-space: normal !important;
+  word-wrap: break-word;
+  width: 105px;
+  background-color: #ddd;
+  color: #222;
 }

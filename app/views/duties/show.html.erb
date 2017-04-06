@@ -1,10 +1,12 @@
 <h1 align="center">Duty Number: <%= @duty.dutynum %></h1>
 <div class="well col-md-8 col-md-offset-2">
-  <h4>StartTime:</h4><%= @duty.starttime %>
+  <h4>Start Date:</h4><%= @duty.start_date %>
   <hr />
-  <h4>EndTime:</h4><%= @duty.endtime %>
+  <h4>Start Time:</h4><%= @duty.starttime %>
   <hr />
-  <h4>PayTime:</h4><%= @duty.paytime %>
+  <h4>End Time:</h4><%= @duty.endtime %>
+  <hr />
+  <h4>Pay Time:</h4><%= @duty.paytime %>
   <hr />
   <h4><strong>Notes:</strong></h4>
   <hr />
@@ -15,7 +17,7 @@
       Driver:
     </p>
     <p class="center">
-      <%= link_to gravatar_for(@duty.driver), duties_path %>
+      <%= link_to gravatar_for(@duty.driver), driver_path(@duty.driver) %>
       <%= @duty.driver.name %>
       <div class="pull-right">
         <%= time_ago_in_words(@duty.created_at) %> ago
@@ -23,7 +25,10 @@
     </p>
   </div>
   <div class="duty-actions">
-    <%= link_to "Edit this duty", edit_duty_path(@duty), class: "btn btn-xs btn-warning" %>
-    <%= link_to "Delete this duty", duty_path(@duty), method: :delete, data: {confirm: "Are you sure??"}, class: "btn btn-xs btn-danger" %>
+    <% if logged_in? && (current_driver == @duty.driver || current_driver.admin?) %>
+      <%= link_to "Edit this duty", edit_duty_path(@duty), class: "btn btn-xs btn-warning" %>
+      <%= link_to "Delete this duty", duty_path(@duty), method: :delete, data: {confirm: "Are you sure??"}, class: "btn btn-xs btn-danger" %>
+    <% end %>
+    <%= link_to "Return to dashboard", dashboard_path(@duty.driver.id), class: "btn btn-xs btn-primary" %>
   </div>
 </div>

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class DriverTest < ActiveSupport::TestCase
   def setup
-    @driver = Driver.new(name: "John Test",email: "john.test@example.com")
+    @driver = Driver.new(name: "John Test",email: "john.test@example.com", password: "password", password_confirmation: "password")
   end
   test "Should be valid" do
     assert @driver.valid?
@@ -36,5 +36,13 @@ class DriverTest < ActiveSupport::TestCase
     @driver.email = mixed_email
     @driver.save
     assert_equal mixed_email.downcase, @driver.reload.email
+  end
+  test "Password should be present" do
+    @driver.password = @driver.password_confirmation = " "
+    assert_not @driver.valid?
+  end
+  test "Password should be 8 or more characters long" do
+    @driver.password = @driver.password_confirmation = "a" * 5
+    assert_not @driver.valid?
   end
 end

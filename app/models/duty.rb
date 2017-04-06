@@ -4,6 +4,8 @@ class Duty < ApplicationRecord
   validates :starttime, presence: true, format: {with: VALID_TIME_REGEX}
   validates :endtime, presence: true, format: {with: VALID_TIME_REGEX}
   validates :paytime, presence: true, format: {with: VALID_TIME_REGEX}
+  validates :start_date, presence: true
   belongs_to :driver
   validates :driver_id, presence: true
+  default_scope -> {order(updated_at: :desc)}
 end

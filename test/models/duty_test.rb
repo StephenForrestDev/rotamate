@@ -2,7 +2,7 @@ require 'test_helper'
 
 class DutyTest < ActiveSupport::TestCase
   def setup
-    @driver = Driver.create!(name: "Stephen", email: "Stephen@example.com")
+    @driver = Driver.create!(name: "Stephen", email: "Stephen@example.com", password: "password", password_confirmation: "password")
     @duty = @driver.duties.build(dutynum: "1111", starttime: '07:00', endtime:'18:30', paytime: '8:00', notes: "Long duty")
   end
   test "Duty should be valid" do

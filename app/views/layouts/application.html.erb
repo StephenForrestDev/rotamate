@@ -8,7 +8,6 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
     <%= render "layouts/navigation" %>
@@ -17,9 +16,5 @@
       <%= yield %>
     </div>
     <%= render "layouts/footer" %>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-  </body>
+    </body>
 </html>

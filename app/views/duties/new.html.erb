@@ -1,31 +1,11 @@
 <%= render 'layouts/page_title', title: "Create a new Duty" %>
-<% if @duty.errors.any? %>
-<div class="row">
-  <div class= "col md-8 col-md-offset-2">
-    <div class= "panel panel-danger">
-      <div class="panel-heading">
-        <h2 class="panel-title">
-          The following errors prevented the duty from being saved.
-        </h2>
-        <div class= "panel-body">
-          <ul>
-            <% @duty.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<% end %>
+<%= render 'layouts/errors', obj: @duty %>
 <div class="row">
   <div class="col-md-6">
     <%= form_for @duty, :html => {class: "form-horizontal",role: "form"} do |f| %>
       <div class= "form-group">
         <div class= "control-label col-md-2">
-          <%= f.label :dutynum %>
+          <%= f.label :dutynum, "Duty Number" %>
         </div>
         <div class= "col-md-8">
           <%= f.text_field :dutynum, class:"form-control", placeholder:"0000", autofocus: true %>
@@ -33,7 +13,15 @@
       </div>
       <div class= "form-group">
         <div class= "control-label col-md-2">
-          <%= f.label :starttime %>
+          <%= f.label :start_date, "Start Date" %>
+        </div>
+        <div class= "col-md-8">
+           <%= f.date_field :start_date, class:"form-control", value: @initial_date %>
+        </div>
+      </div>
+      <div class= "form-group">
+        <div class= "control-label col-md-2">
+          <%= f.label :starttime, "Start Time"%>
         </div>
         <div class= "col-md-8">
            <%= f.time_field :starttime, class:"form-control",  placeholder:"07:00:00" %>
@@ -41,7 +29,7 @@
       </div>
       <div class= "form-group">
         <div class= "control-label col-md-2">
-          <%= f.label :endtime %>
+          <%= f.label :endtime, "End Time"%>
         </div>
         <div class= "col-md-8">
            <%= f.time_field :endtime, class:"form-control",  placeholder:"18:00:00" %>
@@ -49,7 +37,7 @@
       </div>
       <div class= "form-group">
         <div class= "control-label col-md-2">
-          <%= f.label :paytime %>
+          <%= f.label :paytime, "Pay Time" %>
         </div>
         <div class= "col-md-8">
            <%= f.time_field :paytime, class:"form-control",  placeholder:"07:00:00" %>
@@ -57,7 +45,7 @@
       </div>
       <div class= "form-group">
         <div class= "control-label col-md-2">
-          <%= f.label :notes %>
+          <%= f.label :notes, "Notes" %>
         </div>
         <div class= "col-md-8">
           <%= f.text_area :notes, class:"form-control", placeholder:"Notes..." %>

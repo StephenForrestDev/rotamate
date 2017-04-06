@@ -1,0 +1,27 @@
+<div class="well col-md-8 col-md-offset-2">
+<table class="table table-bordered">
+  <tr>
+    <th>DutyNum</th>
+    <th>Driver</th>
+    <th>Start Time</th>
+    <th>End Time</th>
+    <th>Pay Time</th>
+    <th>Notes</th>
+  </tr>
+  <% obj.each do |duty| %>
+    <tr>
+      <td><%= duty.dutynum %></td>
+      <td><%= link_to gravatar_for(duty.driver), duty.driver %></td>
+      <td><%= duty.starttime %></td>
+      <td><%= duty.endtime %></td>
+      <td><%= duty.paytime %></td>
+      <td><%= duty.notes %></td>
+      <% if logged_in? && (current_driver == duty.driver || current_driver.admin?) %>
+        <td><%= link_to "Edit", edit_duty_path(duty), class: "btn btn-xs btn-warning" %></td>
+        <td><%= link_to "Show", duty_path(duty), class: "btn btn-xs btn-primary"%></td>
+        <td><%= link_to "Delete", duty_path(duty), method: :delete, data: {confirm: "Are you sure??"}, class: "btn btn-xs btn-danger"%></td>
+      <% end %>
+    </tr>
+  <% end %> 
+</table>
+</div>

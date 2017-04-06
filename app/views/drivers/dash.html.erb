@@ -1,0 +1,15 @@
+<%= month_calendar do |date| %>
+  <%= date %>
+  <% date_done = false %>
+  <% @driver_duties.each do |duty| %>
+    <% if duty.start_date == date %>
+      <% date_done = true %>
+      <%= link_to ' Duty: '+ duty.dutynum + ' ' + duty.starttime + '-' + duty.endtime + ' Paid:' + duty.paytime, duty_path(duty), class: "btn dutybtn" %>
+    <% end %>
+  <% end %>
+  <% if not date_done %>
+    <%= link_to '----' , {:controller => "duties", :action => "new", :initial_date => date } , class: "btn dutybtn" %>
+  <% end %>
+<% end %>
+
+
