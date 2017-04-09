@@ -2,11 +2,9 @@ $navbar-default-bg: #3a3a3a;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
 .center{
   text-align: center;
-}
-.navbar-default li:hover{
-  color: #fff;
 }
 
 .jumbotron{
@@ -24,6 +22,7 @@ $navbar-default-bg: #3a3a3a;
 .btn-xlarge{
   background-color: #383838;
 }
+
 #logo{
   float: left;
   font-size: 1.7em;
