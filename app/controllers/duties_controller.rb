@@ -13,7 +13,7 @@ class DutiesController < ApplicationController
   def new
     @duty = Duty.new
     @initial_date = params[:initial_date]
-    @existing_duties = Duty.group(:dutynum)
+    @existing_duties = Duty.select("DISTINCT dutynum, duties.*")
   end
   def create
     @duty = Duty.new(duty_params)
