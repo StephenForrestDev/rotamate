@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#home'
   get 'pages/home', to: 'pages#home'
+  get "duties/:id/get_json", :controller=>"duties", :action=>"get_json"
   resources :duties
   get "/signup", to:"drivers#new"
   resources :drivers, except: [:new]

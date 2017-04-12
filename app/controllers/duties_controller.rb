@@ -3,11 +3,17 @@ class DutiesController < ApplicationController
   before_action :require_user, except: [:index, :show]
   before_action :require_same_user,only: [:edit, :update, :destroy]
   def index
-    @duties = Duty.paginate(page: params[:page], per_page: 25)
+    @duties = Duty.order(:dutynum).where("dutynum like ?", "%#{params[:term]}%")
+    render json: @duties.map(&:dutynum)
+  end
+  def get_json
+    duty = Duty.find(params[:id])
+    render :text => duty.to_json
   end
   def new
     @duty = Duty.new
     @initial_date = params[:initial_date]
+    @existing_duties = Duty.group(:dutynum)
   end
   def create
     @duty = Duty.new(duty_params)

@@ -1,5 +1,19 @@
 <%= render 'layouts/page_title', title: "Create a new Duty" %>
 <%= render 'layouts/errors', obj: @duty %>
+<%= javascript_include_tag "newduties" %>
+<div class="row">
+  <div class="col-md-6">
+    <p>Select an existing duty:</p>
+    <form>
+      <select name="select_dutynum" id="dutynum_select" onchange="updateForm()">
+        <% @existing_duties.each do |v| %>
+        <option value='<%=v.id%>'><%=v.dutynum%></option>
+        <% end %>
+      </select>
+    </form>
+    <p> Or create a new one:</p>
+  </div>
+</div>
 <div class="row">
   <div class="col-md-6">
     <%= form_for @duty, :html => {class: "form-horizontal",role: "form"} do |f| %>
@@ -56,7 +70,7 @@
       </div>
     <% end %>
     <div class="col-md-4 col-md-offset-4">
-      <%= link_to "Back to duty listing", duties_path %>
+      <%= link_to "Back to duty listing", dashboard_path(current_driver.id) %>
     </div>
   </div>
 </div>
