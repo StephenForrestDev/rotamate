@@ -7,7 +7,7 @@
     <form>
       <select name="select_dutynum" id="dutynum_select" onchange="updateForm()">
         <% @existing_duties.each do |v| %>
-        <option value='<%=v.id%>'><%=v.dutynum%></option>
+        <option value='<%=v[1]%>'><%=v[0]%></option>
         <% end %>
       </select>
     </form>
@@ -70,7 +70,7 @@
       </div>
     <% end %>
     <div class="col-md-4 col-md-offset-4">
-      <%= link_to "Back to duty listing", dashboard_path(current_driver.id) %>
+      <%= link_to "Back to dashboard", dashboard_path(current_driver.id), class: "btn btn-primary"%>
     </div>
   </div>
 </div>

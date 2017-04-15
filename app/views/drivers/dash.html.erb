@@ -8,7 +8,11 @@
     <% if duty.start_date == date %>
       <% week_pay += (duty.paytime.split(':')[0].to_i*3600) + (duty.paytime.split(':')[1].to_i*60) %>
       <% date_done = true %>
-      <%= link_to ' Duty: '+ duty.dutynum + ' ' + duty.starttime + '-' + duty.endtime + ' Paid:' + duty.paytime, duty_path(duty), class: "btn dutybtn" %>
+      <% if duty.dutynum.downcase != "holiday" %>
+        <%= link_to ' Duty: '+ duty.dutynum + ' ' + duty.starttime + '-' + duty.endtime + ' Paid:' + duty.paytime, duty_path(duty), class: "btn dutybtn" %>
+      <% else %>
+        <%= link_to duty.dutynum, duty_path(duty), class: "btn dutybtn" %>
+      <% end %>
       <% if date.wday == 6 %>
         <% month_pay += week_pay %>
         <td>Week Paid: <%= "%02d:%02d:%02d:%02d" % [week_pay/86400, week_pay/3600%24, week_pay/60%60, week_pay%60] %></td>

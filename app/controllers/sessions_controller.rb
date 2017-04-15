@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if driver && driver.authenticate(params[:session][:password])
       session[:driver_id] = driver.id
       flash[:success] = "You have successfully logged in"
-      redirect_to driver_path(driver)
+      redirect_to dashboard_path(driver)
     else
       flash.now[:danger] = "Incorrect email or password"
       render 'new'
